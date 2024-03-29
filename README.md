@@ -1,4 +1,4 @@
-Horus is a Wear OS dedicated for flashlight modes. It is a project made only for fun.
+Horus is a Wear OS dedicated for flashlight modes.
 Horus's purpose is to give users different flashlight modes with different colors and different shifting intervals between colors. 
 It is a project made only for fun, but if you have any suggestion be it UI, optimization or only to say this app is crap you are very welcome.
 
