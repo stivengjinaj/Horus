@@ -1,4 +1,4 @@
-package com.stiven.technolight.presentation
+package com.stiven.horus.presentation
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color

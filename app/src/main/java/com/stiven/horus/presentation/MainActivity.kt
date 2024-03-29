@@ -4,7 +4,7 @@
  * changes to the libraries and their usages.
  */
 
-package com.stiven.technolight.presentation
+package com.stiven.horus.presentation
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -25,7 +25,7 @@ import androidx.wear.compose.material.TimeText
 import androidx.wear.compose.navigation.SwipeDismissableNavHost
 import androidx.wear.compose.navigation.composable
 import androidx.wear.compose.navigation.rememberSwipeDismissableNavController
-import com.stiven.technolight.presentation.theme.TechnoLightTheme
+import com.stiven.horus.presentation.theme.TechnoLightTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

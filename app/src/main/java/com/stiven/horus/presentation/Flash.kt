@@ -1,4 +1,4 @@
-package com.stiven.technolight.presentation
+package com.stiven.horus.presentation
 
 import android.app.Activity
 import android.content.Context

@@ -1,4 +1,4 @@
-package com.stiven.technolight.presentation
+package com.stiven.horus.presentation
 
 object ColorPickerHelper {
     fun calculateRangeProgress(progress: Double): Pair<Double, ColorRange> {

@@ -1,4 +1,4 @@
-package com.stiven.technolight.presentation
+package com.stiven.horus.presentation
 
 import android.view.MotionEvent
 import androidx.compose.foundation.BorderStroke

@@ -1,4 +1,4 @@
-package com.stiven.technolight.presentation.theme
+package com.stiven.horus.presentation.theme
 
 import androidx.compose.runtime.Composable
 import androidx.wear.compose.material.MaterialTheme
