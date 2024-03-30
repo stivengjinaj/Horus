@@ -44,7 +44,7 @@ fun MonoColor(
     interval: MutableFloatState,
 ) {
     val listState = rememberScalingLazyListState(
-        initialCenterItemIndex = 1
+        initialCenterItemIndex = 0
     )
     TimeText()
     ScalingLazyColumn(
@@ -60,9 +60,6 @@ fun MonoColor(
     ) {
 
         item {
-            Spacer(modifier = Modifier.height(5.dp))
-        }
-        item {
             FlowRow (
                 modifier = Modifier.clip(RoundedCornerShape(10,10)),
                 maxItemsInEachRow = 5,
@@ -74,8 +71,8 @@ fun MonoColor(
                             .width(40.dp)
                             .height(40.dp)
                             .clip(RoundedCornerShape(50)),
-                        colors = ButtonDefaults.outlinedButtonColors(
-                            contentColor = currentColor
+                        colors = ButtonDefaults.buttonColors(
+                            backgroundColor = currentColor
                         ),
                         border = ButtonDefaults.buttonBorder(
                             borderStroke = BorderStroke(
@@ -139,7 +136,11 @@ fun MonoColor(
             )
         }
         item {
-            Button(onClick = {
+            Button(
+                colors = ButtonDefaults.buttonColors(
+                    backgroundColor = Color.Red
+                ),
+                onClick = {
                 navController.navigate("flash")
             }) {
                 Icon(
