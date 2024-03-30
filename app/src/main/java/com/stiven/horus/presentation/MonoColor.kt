@@ -13,13 +13,8 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.PlayArrow
-import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
-import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Slider
 import androidx.compose.material3.SliderDefaults
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableFloatState
 import androidx.compose.runtime.MutableState
@@ -32,6 +27,11 @@ import androidx.wear.compose.foundation.lazy.AutoCenteringParams
 import androidx.wear.compose.foundation.lazy.ScalingLazyColumn
 import androidx.wear.compose.foundation.lazy.ScalingLazyColumnDefaults
 import androidx.wear.compose.foundation.lazy.rememberScalingLazyListState
+import androidx.wear.compose.material.Button
+import androidx.wear.compose.material.ButtonDefaults
+import androidx.wear.compose.material.Icon
+import androidx.wear.compose.material.OutlinedButton
+import androidx.wear.compose.material.Text
 import androidx.wear.compose.material.TimeText
 
 
@@ -75,15 +75,17 @@ fun MonoColor(
                             .height(40.dp)
                             .clip(RoundedCornerShape(50)),
                         colors = ButtonDefaults.outlinedButtonColors(
-                            containerColor = currentColor
+                            contentColor = currentColor
                         ),
-                        border = BorderStroke(
-                            3.dp,
-                            if(color.value == currentColor)
-                                if(currentColor == Color.Red)
-                                    Color.White
-                                else Color.Red
-                            else currentColor
+                        border = ButtonDefaults.buttonBorder(
+                            borderStroke = BorderStroke(
+                                3.dp,
+                                if(color.value == currentColor)
+                                    if(currentColor == Color.Red)
+                                        Color.White
+                                    else Color.Red
+                                else currentColor
+                            )
                         ),
                         onClick = {
                             color.value = currentColor
@@ -137,12 +139,9 @@ fun MonoColor(
             )
         }
         item {
-            IconButton(
-                modifier = Modifier.size(70.dp),
-                onClick = {
-                    navController.navigate("flash")
-                }
-            ) {
+            Button(onClick = {
+                navController.navigate("flash")
+            }) {
                 Icon(
                     modifier = Modifier.size(70.dp),
                     imageVector = Icons.Rounded.PlayArrow,
