@@ -14,8 +14,6 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.wear.compose.material.Icon
 import androidx.compose.material.icons.rounded.PlayArrow
-import androidx.compose.material3.Slider
-import androidx.compose.material3.SliderDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableFloatState
 import androidx.compose.runtime.MutableState
@@ -30,6 +28,8 @@ import androidx.wear.compose.foundation.lazy.ScalingLazyColumnDefaults
 import androidx.wear.compose.foundation.lazy.rememberScalingLazyListState
 import androidx.wear.compose.material.Button
 import androidx.wear.compose.material.ButtonDefaults
+import androidx.wear.compose.material.InlineSlider
+import androidx.wear.compose.material.InlineSliderDefaults
 import androidx.wear.compose.material.OutlinedButton
 import androidx.wear.compose.material.Text
 import androidx.wear.compose.material.TimeText
@@ -104,7 +104,7 @@ fun MonoColor(
             )
         }
         item {
-            Slider(
+            /*Slider(
                 value = brightness.floatValue,
                 onValueChange = { brightness.floatValue = it },
                 colors = SliderDefaults.colors(
@@ -114,6 +114,22 @@ fun MonoColor(
                 ),
                 steps = 3,
                 valueRange = 0f..1f
+            )*/
+            InlineSlider(
+                value = brightness.floatValue,
+                onValueChange = {brightness.floatValue = it},
+                steps = 5,
+                decreaseIcon = {
+                    Icon(imageVector = InlineSliderDefaults.Decrease, contentDescription = "Decrease") },
+                increaseIcon = {
+                    Icon(imageVector = InlineSliderDefaults.Increase, contentDescription = "Increase")
+                },
+                valueRange = 0.3f..1f,
+                colors = InlineSliderDefaults.colors(
+                    backgroundColor = Color.Black,
+                    unselectedBarColor = Color.LightGray,
+                    selectedBarColor = Color.Red,
+                )
             )
         }
         item {
@@ -123,16 +139,21 @@ fun MonoColor(
             )
         }
         item {
-            Slider (
+            InlineSlider(
                 value = interval.floatValue,
-                onValueChange = { interval.floatValue = it },
-                colors = SliderDefaults.colors(
-                    thumbColor = Color.White,
-                    activeTrackColor = Color.White,
-                    inactiveTrackColor = Color.Gray,
-                ),
-                steps = 10,
-                valueRange = 0.05f..0.7f
+                onValueChange = {interval.floatValue = it},
+                steps = 5,
+                decreaseIcon = {
+                    Icon(imageVector = InlineSliderDefaults.Decrease, contentDescription = "Decrease") },
+                increaseIcon = {
+                    Icon(imageVector = InlineSliderDefaults.Increase, contentDescription = "Increase")
+                },
+                valueRange = 0.03f..1f,
+                colors = InlineSliderDefaults.colors(
+                    backgroundColor = Color.Black,
+                    unselectedBarColor = Color.LightGray,
+                    selectedBarColor = Color.Red,
+                )
             )
         }
         item {
@@ -147,7 +168,7 @@ fun MonoColor(
                     modifier = Modifier.size(70.dp),
                     imageVector = Icons.Rounded.PlayArrow,
                     contentDescription = "Play",
-                    tint = Color.White
+                    tint = Color.LightGray
                 )
             }
         }
