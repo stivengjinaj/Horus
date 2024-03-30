@@ -24,7 +24,7 @@ import androidx.wear.compose.material.TimeText
 @Composable
 fun Modes(
     navController: NavHostController,
-    brightness: MutableFloatState
+    brightness: MutableFloatState,
 ) {
     val context = LocalContext.current
     val listState = rememberScalingLazyListState(

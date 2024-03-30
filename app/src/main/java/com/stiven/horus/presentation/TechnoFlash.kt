@@ -16,10 +16,9 @@ import kotlin.random.Random
 
 @Composable
 fun TechnoFlash(
-    colors: List<Color>
+    colors: List<Color>,
 ){
     var currentColor by remember { mutableStateOf(colors.random()) }
-
     LaunchedEffect(Unit) {
         while (true) {
             val interval = Random.nextLong(10, 70) // Random interval between 100 to 500 milliseconds

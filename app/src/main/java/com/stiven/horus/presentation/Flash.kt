@@ -22,9 +22,10 @@ import kotlinx.coroutines.delay
 fun Flash(
     color: Color,
     interval: Float,
-    brightness: Float
+    brightness: Float,
 ){
     val context = LocalContext.current
+
     var currentColor by remember { mutableStateOf(color) }
     setBrightness(context, brightness)
     LaunchedEffect(Unit) {

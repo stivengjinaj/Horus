@@ -16,10 +16,9 @@ import kotlinx.coroutines.delay
 
 @Composable
 fun LinearFlash(
-    colors: List<Color>
+    colors: List<Color>,
 ) {
     var currentColor by remember { mutableStateOf(colors.first()) }
-
     LaunchedEffect(Unit) {
         while (true) {
             delay(100)

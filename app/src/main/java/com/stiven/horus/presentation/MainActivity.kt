@@ -6,7 +6,10 @@
 
 package com.stiven.horus.presentation
 
+import android.content.Context
 import android.os.Bundle
+import android.os.PowerManager
+import android.os.PowerManager.WakeLock
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
@@ -34,15 +37,17 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
 
         setTheme(android.R.style.Theme_DeviceDefault)
-
+        val wakeLock = (this.getSystemService(Context.POWER_SERVICE) as PowerManager).run {
+            newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "Horus::MyWakeLock")
+        }
         setContent {
-            WearApp()
+            WearApp(wakeLock)
         }
     }
 }
 
 @Composable
-fun WearApp() {
+fun WearApp(wakeLock: PowerManager.WakeLock) {
 
     val navController = rememberSwipeDismissableNavController()
     val color = remember{
@@ -76,11 +81,13 @@ fun WearApp() {
                 startDestination = "root"
             ) {
                 composable("root"){
+                    releaseWakeLock(wakeLock)
                     MainPage(
-                        navController = navController
+                        navController = navController,
                     )
                 }
                 composable("mono-color"){
+                    releaseWakeLock(wakeLock)
                     MonoColor(
                         navController = navController,
                         color = color,
@@ -89,32 +96,47 @@ fun WearApp() {
                     )
                 }
                 composable("modes"){
+                    releaseWakeLock(wakeLock)
                     Modes(
                         navController = navController,
                         brightness = brightness
                     )
                 }
                 composable("flash"){
+                    acquireWakeLock(wakeLock)
                     Flash(
                         color = color.value,
                         interval = interval.floatValue,
-                        brightness = brightness.floatValue
+                        brightness = brightness.floatValue,
                     )
                 }
                 composable("linear"){
+                    acquireWakeLock(wakeLock)
                     LinearFlash(
-                        colors = colors
+                        colors = colors,
                     )
                 }
                 composable("techno"){
+                    acquireWakeLock(wakeLock)
                     TechnoFlash(
-                        colors = colors
+                        colors = colors,
                     )
                 }
                 composable("rgb"){
+                    acquireWakeLock(wakeLock)
                     RgbFlash()
                 }
             }
         }
     }
+}
+
+fun releaseWakeLock(wakeLock: WakeLock){
+    if (wakeLock.isHeld){
+        wakeLock.release()
+    }
+}
+
+fun acquireWakeLock(wakeLock: WakeLock){
+    wakeLock.acquire()
 }

@@ -19,7 +19,7 @@ import androidx.wear.compose.material.Text
 
 @Composable
 fun MainPage(
-    navController: NavHostController
+    navController: NavHostController,
 ) {
     val screenWidth = LocalConfiguration.current.screenWidthDp
     Column(
