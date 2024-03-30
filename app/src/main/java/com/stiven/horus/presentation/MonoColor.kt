@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.wear.compose.material.Icon
 import androidx.compose.material.icons.rounded.PlayArrow
 import androidx.compose.material3.Slider
 import androidx.compose.material3.SliderDefaults
@@ -29,7 +30,6 @@ import androidx.wear.compose.foundation.lazy.ScalingLazyColumnDefaults
 import androidx.wear.compose.foundation.lazy.rememberScalingLazyListState
 import androidx.wear.compose.material.Button
 import androidx.wear.compose.material.ButtonDefaults
-import androidx.wear.compose.material.Icon
 import androidx.wear.compose.material.OutlinedButton
 import androidx.wear.compose.material.Text
 import androidx.wear.compose.material.TimeText
