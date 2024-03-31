@@ -32,7 +32,6 @@ import androidx.wear.compose.material.InlineSlider
 import androidx.wear.compose.material.InlineSliderDefaults
 import androidx.wear.compose.material.OutlinedButton
 import androidx.wear.compose.material.Text
-import androidx.wear.compose.material.TimeText
 
 
 @OptIn(ExperimentalLayoutApi::class)
@@ -46,7 +45,6 @@ fun MonoColor(
     val listState = rememberScalingLazyListState(
         initialCenterItemIndex = 0
     )
-    TimeText()
     ScalingLazyColumn(
         modifier = Modifier
             .fillMaxSize()
@@ -54,7 +52,7 @@ fun MonoColor(
         autoCentering = AutoCenteringParams(itemIndex = 0),
         flingBehavior = ScalingLazyColumnDefaults.snapFlingBehavior(
             state = listState,
-            snapOffset = 10.dp
+            snapOffset = 20.dp
         ),
         state = listState
     ) {
@@ -104,17 +102,6 @@ fun MonoColor(
             )
         }
         item {
-            /*Slider(
-                value = brightness.floatValue,
-                onValueChange = { brightness.floatValue = it },
-                colors = SliderDefaults.colors(
-                    thumbColor = Color.White,
-                    activeTrackColor = Color.Red,
-                    inactiveTrackColor = Color.Gray,
-                ),
-                steps = 3,
-                valueRange = 0f..1f
-            )*/
             InlineSlider(
                 value = brightness.floatValue,
                 onValueChange = {brightness.floatValue = it},
@@ -124,12 +111,13 @@ fun MonoColor(
                 increaseIcon = {
                     Icon(imageVector = InlineSliderDefaults.Increase, contentDescription = "Increase")
                 },
-                valueRange = 0.3f..1f,
+                valueRange = 0f..1f,
                 colors = InlineSliderDefaults.colors(
                     backgroundColor = Color.Black,
                     unselectedBarColor = Color.LightGray,
                     selectedBarColor = Color.Red,
-                )
+                ),
+                segmented = false
             )
         }
         item {
@@ -142,18 +130,19 @@ fun MonoColor(
             InlineSlider(
                 value = interval.floatValue,
                 onValueChange = {interval.floatValue = it},
-                steps = 5,
+                steps = 10,
                 decreaseIcon = {
                     Icon(imageVector = InlineSliderDefaults.Decrease, contentDescription = "Decrease") },
                 increaseIcon = {
                     Icon(imageVector = InlineSliderDefaults.Increase, contentDescription = "Increase")
                 },
-                valueRange = 0.03f..1f,
+                valueRange = 0.05f..0.5f,
                 colors = InlineSliderDefaults.colors(
                     backgroundColor = Color.Black,
                     unselectedBarColor = Color.LightGray,
                     selectedBarColor = Color.Red,
-                )
+                ),
+                segmented = false
             )
         }
         item {
