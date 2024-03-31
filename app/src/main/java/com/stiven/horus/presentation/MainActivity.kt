@@ -113,6 +113,7 @@ fun WearApp(wakeLock: PowerManager.WakeLock) {
                     )
                 }
                 composable("flashlight"){
+                    acquireWakeLock(wakeLock)
                     setBrightness(context, mapIntToFloat(systemBrightness.intValue))
                     FlashLight(context)
                 }
