@@ -1,65 +1,56 @@
 package com.stiven.horus.presentation
 
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableFloatState
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalConfiguration
-import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
-import androidx.wear.compose.foundation.lazy.AutoCenteringParams
-import androidx.wear.compose.foundation.lazy.ScalingLazyColumn
-import androidx.wear.compose.foundation.lazy.ScalingLazyColumnDefaults
-import androidx.wear.compose.foundation.lazy.rememberScalingLazyListState
+import androidx.wear.compose.foundation.CurvedLayout
+import androidx.wear.compose.foundation.curvedComposable
 import androidx.wear.compose.material.Button
 import androidx.wear.compose.material.ButtonDefaults
 import androidx.wear.compose.material.Icon
 import androidx.wear.compose.material.InlineSlider
 import androidx.wear.compose.material.InlineSliderDefaults
 import androidx.wear.compose.material.Text
-import androidx.wear.compose.material.TimeText
+import com.stiven.technolight.R
 
 @Composable
 fun Modes(
     navController: NavHostController,
     brightness: MutableFloatState,
 ) {
-    val context = LocalContext.current
-    val listState = rememberScalingLazyListState(
-        initialCenterItemScrollOffset = 3
-    )
-    val screenWidth = LocalConfiguration.current.screenWidthDp
-    TimeText()
-    ScalingLazyColumn(
+    Box(
         modifier = Modifier
             .fillMaxSize()
-            .padding(horizontal = 10.dp),
-        autoCentering = AutoCenteringParams(itemIndex = 0),
-        flingBehavior = ScalingLazyColumnDefaults.snapFlingBehavior(
-            state = listState,
-            snapOffset = 10.dp
-            // Exponential decay by default. You can also explicitly define a
-            // DecayAnimationSpec.
-        ),
-        state = listState
-    ){
-        item {
+            .padding(bottom = 20.dp),
+        contentAlignment = Alignment.TopCenter
+    ) {
+        Column(
+            modifier = Modifier.padding(10.dp, 20.dp),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
             Text(
                 text = "Brightness",
                 color = Color.White
             )
-        }
-        item {
             InlineSlider(
                 value = brightness.floatValue,
-                onValueChange = {brightness.floatValue = it},
+                onValueChange = { brightness.floatValue = it },
                 steps = 5,
                 decreaseIcon = {
-                    Icon(imageVector = InlineSliderDefaults.Decrease, contentDescription = "Decrease") },
+                    Icon(imageVector = InlineSliderDefaults.Decrease, contentDescription = "Decrease")
+                },
                 increaseIcon = {
                     Icon(imageVector = InlineSliderDefaults.Increase, contentDescription = "Increase")
                 },
@@ -72,70 +63,38 @@ fun Modes(
                 segmented = false
             )
         }
-        item {
+        FlashButton(anchor = 160f, icon = R.drawable.linear, description = "linear", onClick = {navController.navigate("linear")})
+        FlashButton(anchor = 115f, icon = R.drawable.techno, description = "techno", onClick = {navController.navigate("techno")})
+        FlashButton(anchor = 65f, icon = R.drawable.random, description = "random", onClick = {navController.navigate("rgb")})
+        FlashButton(anchor = 20f, icon = R.drawable.flashlight, description = "flashlight", onClick = {navController.navigate("flashlight")})
+    }
+}
+
+@Composable
+fun FlashButton(
+    anchor: Float,
+    icon: Int,
+    description: String,
+    onClick: () -> Unit
+){
+    CurvedLayout(
+        anchor = anchor,
+    ) {
+        curvedComposable {
             Button(
-                modifier = Modifier.width((screenWidth-50).dp),
-                onClick = {
-                    setBrightness(context = context, brightness.floatValue)
-                    navController.navigate("linear")
-                },
+                modifier = Modifier
+                    .width(30.dp)
+                    .height(30.dp),
+                onClick = onClick,
                 colors = ButtonDefaults.buttonColors(
-                    backgroundColor = Color.White
+                    backgroundColor = Color.White,
+                    contentColor = Color.Black
                 )
             ) {
-                Text(
-                    text = "Linear",
-                    color = Color.Black
-                )
-            }
-        }
-        item {
-            Button(
-                modifier = Modifier.width((screenWidth-50).dp),
-                onClick = {
-                    setBrightness(context = context, brightness.floatValue)
-                    navController.navigate("techno")
-                },
-                colors = ButtonDefaults.buttonColors(
-                    backgroundColor = Color.White
-                )
-            ) {
-                Text(
-                    text = "Techno",
-                    color = Color.Black
-                )
-            }
-        }
-        item {
-            Button(
-                modifier = Modifier.width((screenWidth-50).dp),
-                onClick = {
-                    setBrightness(context = context, brightness.floatValue)
-                    navController.navigate("rgb")
-                },
-                colors = ButtonDefaults.buttonColors(
-                    backgroundColor = Color.White
-                )
-            ) {
-                Text(
-                    text = "Random",
-                    color = Color.Black
-                )
-            }
-        }
-        item {
-            Button(
-                modifier = Modifier.width((screenWidth-50).dp),
-                onClick = {
-                    navController.navigate("flashlight")
-                },
-                colors = ButtonDefaults.buttonColors(
-                    backgroundColor = Color.White
-                )
-            ) {
-                Text(
-                    text = "Flashlight",
-                    color = Color.Black
+                Icon(
+                    modifier = Modifier.rotate(-(anchor+90)),
+                    painter = painterResource(id = icon),
+                    contentDescription = description
                 )
             }
         }

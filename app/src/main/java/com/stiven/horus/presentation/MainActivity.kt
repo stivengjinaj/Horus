@@ -157,17 +157,19 @@ fun FlashLight(context: Context) {
         modifier = Modifier
             .fillMaxSize()
             .background(Color.White)
-            .combinedClickable (
+            .combinedClickable(
                 onClick = {
-                    Toast.makeText(context, "Long press to change intensity.", Toast.LENGTH_SHORT).show()
+                    Toast
+                        .makeText(context, "Long press to change intensity.", Toast.LENGTH_SHORT)
+                        .show()
                 },
                 onLongClick = {
                     Log.d("BRG", brightness.floatValue.toString())
                     brightness.floatValue -= 0.3f
-                    if (brightness.floatValue <= 0f){
+                    if (brightness.floatValue <= 0f) {
                         setBrightness(context, 1f)
                         brightness.floatValue = 1f
-                    }else {
+                    } else {
                         setBrightness(context, brightness.floatValue)
                     }
                 }
