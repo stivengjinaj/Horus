@@ -3,8 +3,6 @@ package com.stiven.horus.presentation
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
-import androidx.compose.material3.Slider
-import androidx.compose.material3.SliderDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableFloatState
 import androidx.compose.ui.Modifier
@@ -18,6 +16,10 @@ import androidx.wear.compose.foundation.lazy.ScalingLazyColumn
 import androidx.wear.compose.foundation.lazy.ScalingLazyColumnDefaults
 import androidx.wear.compose.foundation.lazy.rememberScalingLazyListState
 import androidx.wear.compose.material.Button
+import androidx.wear.compose.material.ButtonDefaults
+import androidx.wear.compose.material.Icon
+import androidx.wear.compose.material.InlineSlider
+import androidx.wear.compose.material.InlineSliderDefaults
 import androidx.wear.compose.material.Text
 import androidx.wear.compose.material.TimeText
 
@@ -52,16 +54,22 @@ fun Modes(
             )
         }
         item {
-            Slider(
+            InlineSlider(
                 value = brightness.floatValue,
-                onValueChange = { brightness.floatValue = it },
-                colors = SliderDefaults.colors(
-                    thumbColor = Color.White,
-                    activeTrackColor = Color.Red,
-                    inactiveTrackColor = Color.Gray,
+                onValueChange = {brightness.floatValue = it},
+                steps = 5,
+                decreaseIcon = {
+                    Icon(imageVector = InlineSliderDefaults.Decrease, contentDescription = "Decrease") },
+                increaseIcon = {
+                    Icon(imageVector = InlineSliderDefaults.Increase, contentDescription = "Increase")
+                },
+                valueRange = 0f..1f,
+                colors = InlineSliderDefaults.colors(
+                    backgroundColor = Color.Black,
+                    unselectedBarColor = Color.LightGray,
+                    selectedBarColor = Color.Red,
                 ),
-                steps = 3,
-                valueRange = 0f..1f
+                segmented = false
             )
         }
         item {
@@ -71,7 +79,7 @@ fun Modes(
                     setBrightness(context = context, brightness.floatValue)
                     navController.navigate("linear")
                 },
-                colors = androidx.wear.compose.material.ButtonDefaults.buttonColors(
+                colors = ButtonDefaults.buttonColors(
                     backgroundColor = Color.White
                 )
             ) {
@@ -88,7 +96,7 @@ fun Modes(
                     setBrightness(context = context, brightness.floatValue)
                     navController.navigate("techno")
                 },
-                colors = androidx.wear.compose.material.ButtonDefaults.buttonColors(
+                colors = ButtonDefaults.buttonColors(
                     backgroundColor = Color.White
                 )
             ) {
@@ -105,12 +113,28 @@ fun Modes(
                     setBrightness(context = context, brightness.floatValue)
                     navController.navigate("rgb")
                 },
-                colors = androidx.wear.compose.material.ButtonDefaults.buttonColors(
+                colors = ButtonDefaults.buttonColors(
                     backgroundColor = Color.White
                 )
             ) {
                 Text(
                     text = "Random",
+                    color = Color.Black
+                )
+            }
+        }
+        item {
+            Button(
+                modifier = Modifier.width((screenWidth-50).dp),
+                onClick = {
+                    navController.navigate("flashlight")
+                },
+                colors = ButtonDefaults.buttonColors(
+                    backgroundColor = Color.White
+                )
+            ) {
+                Text(
+                    text = "Flashlight",
                     color = Color.Black
                 )
             }
