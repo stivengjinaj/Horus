@@ -56,7 +56,6 @@ fun MonoColor(
         ),
         state = listState
     ) {
-
         item {
             FlowRow (
                 modifier = Modifier.clip(RoundedCornerShape(10,10)),
