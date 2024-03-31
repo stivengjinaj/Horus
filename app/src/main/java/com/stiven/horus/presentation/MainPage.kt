@@ -16,19 +16,21 @@ import androidx.navigation.NavHostController
 import androidx.wear.compose.material.Button
 import androidx.wear.compose.material.ButtonDefaults
 import androidx.wear.compose.material.Text
+import androidx.wear.compose.material.TimeText
 
 @Composable
 fun MainPage(
     navController: NavHostController,
 ) {
     val screenWidth = LocalConfiguration.current.screenWidthDp
+    TimeText()
     Column(
         modifier = Modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
         Button(
-            modifier = Modifier.width((screenWidth-50).dp),
+            modifier = Modifier.width((screenWidth - 50).dp),
             onClick = {
                 navController.navigate("mono-color")
             },
@@ -41,9 +43,9 @@ fun MainPage(
                 color = Color.Black
             )
         }
-        Spacer(modifier = Modifier.height(10.dp))
+        Spacer(modifier = Modifier.height(5.dp))
         Button(
-            modifier = Modifier.width((screenWidth-50).dp),
+            modifier = Modifier.width((screenWidth - 50).dp),
             onClick = {
                 navController.navigate("modes")
             },
