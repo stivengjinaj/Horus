@@ -2,9 +2,7 @@ package com.stiven.horus.presentation
 
 import android.app.Activity
 import android.content.Context
-import android.util.Log
 import android.view.WindowManager
-import android.widget.Toast
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.combinedClickable
@@ -49,7 +47,6 @@ fun Flash(
             .background(currentColor)
             .combinedClickable(
                 onClick = {
-                    Log.d("interval", newInterval.floatValue.toString())
                     if(newInterval.floatValue >= 0.5f){
                         newInterval.floatValue = 0.05f
                     }else {
